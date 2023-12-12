@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  mongo-db:
+    image: mongo:4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: test
+    ports:
+      - "27017:27017"
