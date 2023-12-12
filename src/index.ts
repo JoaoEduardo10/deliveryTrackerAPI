@@ -1,12 +1,13 @@
-import "dotenv/config";
-import { MongoDb } from "./database/mongodb";
-import { Console } from "console";
+import { MongoDb } from './database/mongodb';
+import { app } from './app';
 
 class Server {
   static initializing() {
     MongoDb.connect()
       .then(() => {
-        console.log("connectado");
+        const PORT = process.env.PORT || '3000';
+
+        app.listen(PORT, () => console.log('server on'));
       })
       .catch((error) => {
         console.log(error.message);
