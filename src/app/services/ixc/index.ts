@@ -1,5 +1,5 @@
-import { Client } from './get-client/client';
-import { IClientParams, IUpdateClientParams } from './get-client/protocols';
+import { Client } from './client/client';
+import { IClientParams, IUpdateClientParams } from './client/protocols';
 
 class IXC {
   private client: Client;

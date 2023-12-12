@@ -79,7 +79,7 @@ class Client implements IClient {
       },
     });
 
-    const updateClient = (await this.fetch.ixc({
+    await this.fetch.ixc({
       url: `cliente/${client.id}`,
       method: 'PUT',
       token: this.token,
@@ -91,13 +91,7 @@ class Client implements IClient {
         whatsapp: telefone_celular ?? client.telefone_celular,
         email: email ?? client.email,
       },
-    })) as any;
-
-    if (!updateClient) {
-      throw new Internal_Server_Error(
-        'Não foi posssivel atualizar os dados do usuário',
-      );
-    }
+    });
   }
 }
 
