@@ -44,7 +44,6 @@ const Delivery = model(
     deliveredByEmail: {
       type: String,
       required: true,
-      unique: true,
     },
     deliveryDate: {
       type: Date,
