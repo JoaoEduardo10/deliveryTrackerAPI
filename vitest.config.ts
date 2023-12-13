@@ -7,6 +7,8 @@ export default defineConfig({
     environment: 'node',
     coverage: {
       provider: 'v8',
+      include: ['src/app/**/**/*.ts'],
+      exclude: ['src/app/**/**/protocols.ts'],
     },
   },
 });

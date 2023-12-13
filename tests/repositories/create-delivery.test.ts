@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, expect, it, vi } from 'vitest';
 import { MongoCreateDelivaryRepository } from '../../src/app/repositories/create-delivery';
 import { CreateDeliveryParams } from '../../src/app/repositories/create-delivery/protocols';
+import { Delivery } from '../../src/model/Delivery';
 
 describe('create-delivery', () => {
   it('should create delivery', async () => {
@@ -179,6 +181,32 @@ describe('create-delivery', () => {
         latitude: -10222245,
         longitude: -40000390,
       } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+
+  it('should not create a delivery error in the databasey', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    vi.spyOn(Delivery, 'create').mockReturnValue(null as any);
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        deliveredByName: 'entregador',
+        imageReference: 'entregador.png',
+        latitude: -10222245,
+        longitude: -40000390,
+        recipient: {
+          cpf_cnpj: '091-987-243-12',
+        },
+      });
 
       expect(delivery.id).not.toBeTruthy();
     } catch (error) {
