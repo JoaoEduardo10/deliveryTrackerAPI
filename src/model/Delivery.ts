@@ -13,7 +13,7 @@ const Delivery = model(
       required: true,
     },
     recipient: {
-      cpf: {
+      cpf_cnpj: {
         type: String,
         required: true,
       },

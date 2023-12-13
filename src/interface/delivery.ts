@@ -3,10 +3,10 @@ interface DeliveryDTO {
   deliveredByName: string;
   deliveredByEmail: string;
   recipient: {
-    cpf: string;
+    cpf_cnpj: string;
     email?: string;
     number?: string;
-    someoneAtHome?: boolean;
+    someoneAtHome?: boolean; //alguém em casa
   };
   latitude: number;
   longitude: number;
