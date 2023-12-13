@@ -1,0 +1,192 @@
+import { describe, expect, it } from 'vitest';
+import { MongoCreateDelivaryRepository } from '../../src/app/repositories/create-delivery';
+import { CreateDeliveryParams } from '../../src/app/repositories/create-delivery/protocols';
+
+describe('create-delivery', () => {
+  it('should create delivery', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    const delivery = await repository.create({
+      deliveredByEmail: 'entregador@interativabr.com.br',
+      deliveredByName: 'entregador',
+      imageReference: 'entregador.png',
+      latitude: -10222245,
+      longitude: -40000390,
+      recipient: {
+        cpf_cnpj: '091-987-243-12',
+      },
+    });
+
+    expect(delivery.id).toBeTruthy();
+    expect(delivery.latitude).toBeTruthy();
+    expect(delivery.longitude).toBeTruthy();
+    expect(delivery.deliveredByEmail).toBeTruthy();
+    expect(delivery.imageReference).toBeTruthy();
+    expect(delivery.recipient.cpf_cnpj).toBeTruthy();
+  });
+
+  it('should not create the delivery by not adding the delivery email', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByName: 'entregador',
+        imageReference: 'entregador.png',
+        latitude: -10222245,
+        longitude: -40000390,
+        recipient: {
+          cpf_cnpj: '091-987-243-12',
+        },
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+
+  it('should not create the delivery by not adding the delivery name', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        imageReference: 'entregador.png',
+        latitude: -10222245,
+        longitude: -40000390,
+        recipient: {
+          cpf_cnpj: '091-987-243-12',
+        },
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+
+  it('should not create the delivery by not adding the imageReference', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        deliveredByName: 'entregador',
+        latitude: -10222245,
+        longitude: -40000390,
+        recipient: {
+          cpf_cnpj: '091-987-243-12',
+        },
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+
+  it('should not create the delivery by not adding the latitude', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        deliveredByName: 'entregador',
+        imageReference: 'entregador.png',
+        longitude: -40000390,
+        recipient: {
+          cpf_cnpj: '091-987-243-12',
+        },
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+
+  it('should not create the delivery by not adding the longitude', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        deliveredByName: 'entregador',
+        imageReference: 'entregador.png',
+        latitude: -10222245,
+        recipient: {
+          cpf_cnpj: '091-987-243-12',
+        },
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+
+  it('should not create the delivery by not adding the recepient cpf_cnpj', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        deliveredByName: 'entregador',
+        imageReference: 'entregador.png',
+        latitude: -10222245,
+        longitude: -40000390,
+        recipient: {},
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+
+  it('should not create the delivery by not adding the recipient', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        deliveredByName: 'entregador',
+        imageReference: 'entregador.png',
+        latitude: -10222245,
+        longitude: -40000390,
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega',
+      );
+    }
+  });
+});
