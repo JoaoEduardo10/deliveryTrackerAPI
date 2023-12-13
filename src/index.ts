@@ -10,6 +10,7 @@ class Server {
         app.listen(PORT, () => console.log('server on'));
       })
       .catch((error) => {
+        console.log('não conectou');
         console.log(error.message);
       });
   }

@@ -18,5 +18,4 @@ ixc
     telefone_celular: '86981320524',
   })
   .then((data) => console.log(data));
-
 export { app };

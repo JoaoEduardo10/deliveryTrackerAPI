@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 class MongoDb {
   static async connect() {
-    const username = process.env.MONGO_USERNAME || "";
-    const password = process.env.MONGO_PASSWORD || "";
-    const uri = process.env.MONGO_URI || "";
+    const username = process.env.MONGO_USERNAME || '';
+    const password = process.env.MONGO_PASSWORD || '';
+    const uri = process.env.MONGO_URI || '';
 
-    mongoose.set("strictQuery", true);
+    mongoose.set('strictQuery', true);
 
     await mongoose.connect(uri, { auth: { password, username } });
   }
