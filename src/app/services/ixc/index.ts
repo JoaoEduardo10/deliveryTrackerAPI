@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from './client/client';
 import { IClientParams, IUpdateClientParams } from './client/protocols';
 
@@ -11,9 +12,13 @@ class IXC {
   async get_client(params: IClientParams) {
     const { cpf_cnpj } = params;
 
-    const client = await this.client.get({ cpf_cnpj });
+    try {
+      const client = await this.client.get({ cpf_cnpj });
 
-    return client;
+      return client;
+    } catch (error: any) {
+      return error.message as string;
+    }
   }
 
   async update_client(params: IUpdateClientParams) {
