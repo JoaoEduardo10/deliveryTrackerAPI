@@ -27,11 +27,11 @@ export const compareJwt = (
     const varifyToken = jwt.verify(token, jwtHash);
 
     if (typeof varifyToken === 'string') {
-      throw new Error('não autorizado');
+      return undefined;
     }
 
     return varifyToken as Ijwt & IjwtComplete;
   } catch (error) {
-    if (error) return undefined;
+    return undefined;
   }
 };

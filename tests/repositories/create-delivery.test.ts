@@ -46,7 +46,7 @@ describe('create-delivery', () => {
       expect(error).toBeTruthy();
 
       expect((error as Error).message).toBe(
-        'Não foi possivel registra a entrega',
+        'Não foi possivel registra a entrega: Adicine o email do entregador!',
       );
     }
   });
@@ -70,7 +70,7 @@ describe('create-delivery', () => {
       expect(error).toBeTruthy();
 
       expect((error as Error).message).toBe(
-        'Não foi possivel registra a entrega',
+        'Não foi possivel registra a entrega: Adicione o nome do entregador!',
       );
     }
   });
@@ -94,7 +94,7 @@ describe('create-delivery', () => {
       expect(error).toBeTruthy();
 
       expect((error as Error).message).toBe(
-        'Não foi possivel registra a entrega',
+        'Não foi possivel registra a entrega: Adicione A imagem de referencia!',
       );
     }
   });
@@ -118,7 +118,7 @@ describe('create-delivery', () => {
       expect(error).toBeTruthy();
 
       expect((error as Error).message).toBe(
-        'Não foi possivel registra a entrega',
+        'Não foi possivel registra a entrega: Falata a longitude e latitude!',
       );
     }
   });
@@ -142,7 +142,7 @@ describe('create-delivery', () => {
       expect(error).toBeTruthy();
 
       expect((error as Error).message).toBe(
-        'Não foi possivel registra a entrega',
+        'Não foi possivel registra a entrega: Falata a longitude e latitude!',
       );
     }
   });
@@ -165,7 +165,7 @@ describe('create-delivery', () => {
       expect(error).toBeTruthy();
 
       expect((error as Error).message).toBe(
-        'Não foi possivel registra a entrega',
+        'Não foi possivel registra a entrega: Cpf ou CNPJ do cliente é necessario!',
       );
     }
   });
@@ -187,7 +187,7 @@ describe('create-delivery', () => {
       expect(error).toBeTruthy();
 
       expect((error as Error).message).toBe(
-        'Não foi possivel registra a entrega',
+        'Não foi possivel registra a entrega: Cpf ou CNPJ do cliente é necessario!',
       );
     }
   });

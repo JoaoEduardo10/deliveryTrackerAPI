@@ -1,4 +1,4 @@
-import { Internal_Server_Error } from '../errors/api-error';
+import { Bad_Request } from '../errors/api-error';
 import { CreateDeliveryParams } from '../repositories/create-delivery/protocols';
 
 class DeliveryValidator {
@@ -13,22 +13,32 @@ class DeliveryValidator {
     } = params;
 
     if (!deliveredByEmail) {
-      throw new Internal_Server_Error('Não foi possivel registra a entrega');
+      throw new Bad_Request(
+        'Não foi possivel registra a entrega: Adicine o email do entregador!',
+      );
     }
     if (!deliveredByName) {
-      throw new Internal_Server_Error('Não foi possivel registra a entrega');
+      throw new Bad_Request(
+        'Não foi possivel registra a entrega: Adicione o nome do entregador!',
+      );
     }
 
     if (!imageReference) {
-      throw new Internal_Server_Error('Não foi possivel registra a entrega');
+      throw new Bad_Request(
+        'Não foi possivel registra a entrega: Adicione A imagem de referencia!',
+      );
     }
 
     if (!latitude || !longitude) {
-      throw new Internal_Server_Error('Não foi possivel registra a entrega');
+      throw new Bad_Request(
+        'Não foi possivel registra a entrega: Falata a longitude e latitude!',
+      );
     }
 
     if (!recipient || !recipient.cpf_cnpj) {
-      throw new Internal_Server_Error('Não foi possivel registra a entrega');
+      throw new Bad_Request(
+        'Não foi possivel registra a entrega: Cpf ou CNPJ do cliente é necessario!',
+      );
     }
   }
 }
