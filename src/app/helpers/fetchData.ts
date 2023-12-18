@@ -39,7 +39,7 @@ class Fetch {
     const ixc_data: { registros?: T[] } = await response.data;
 
     if (method != 'PUT' && !ixc_data.registros) {
-      throw new Internal_Server_Error(ixc_data as any);
+      throw new Internal_Server_Error(`${ixc_data}` as any);
     }
 
     return ixc_data.registros ?? [];
