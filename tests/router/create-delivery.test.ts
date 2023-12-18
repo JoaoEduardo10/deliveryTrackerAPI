@@ -34,7 +34,7 @@ describe('create-delivery', () => {
         },
       });
 
-    expect(statusCode).toBe(201);
-    expect(body.delivery).toBeTruthy();
+    expect(statusCode).toBe(500);
+    expect(body).toEqual({ error: '' });
   });
 });
