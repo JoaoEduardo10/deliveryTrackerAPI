@@ -23,6 +23,7 @@ jobs:
 
       - name: npm install, build, and test
         env:
+          PORT: ${{ secrets.PORT }}
           HASH_JWT: ${{ secrets.HASH_JWT }}
           TYPE_JWT: ${{ secrets.TYPE_JWT }}
           VERSION: ${{ secrets.VERSION }}

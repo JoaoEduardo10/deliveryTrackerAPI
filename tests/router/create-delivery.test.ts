@@ -18,7 +18,7 @@ describe('create-delivery', () => {
     user.token = token;
   });
   it('should create a delivery', async () => {
-    const { body } = await serverTest
+    const { body, statusCode } = await serverTest
       .post(`${process.env.VERSION}/delivery`)
       .set('Authorization', `${process.env.TYPE_JWT} ${user.token}`)
       .send({
@@ -33,6 +33,8 @@ describe('create-delivery', () => {
           boletus_id: 23546576564333,
         },
       });
+
+    expect(statusCode).toBe(201);
     expect(body.delivery).toBeTruthy();
   });
 });
