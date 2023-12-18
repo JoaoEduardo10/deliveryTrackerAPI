@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { IXC } from '../../src/app/services/ixc';
 import { AxiosMock } from '../mock/axios';
-import { IXC_API } from '../../src/app/lib/axios';
+import axios from 'axios';
 
 describe('ixc/client', () => {
   it('shoudl return client', async () => {
@@ -43,7 +43,7 @@ describe('ixc/client', () => {
     const ixc = new IXC();
 
     AxiosMock.requestMock({
-      axiosInstance: IXC_API,
+      axiosInstance: axios,
       data: {},
       method: 'GET',
       statusCode: 200,
