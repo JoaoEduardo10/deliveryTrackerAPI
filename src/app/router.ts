@@ -32,7 +32,7 @@ router.get(
     if (typeof client == 'string') {
       return res
         .status(401)
-        .json({ error: 'CPF ou CNPJ invalido: erro na api' + client });
+        .json({ error: 'CPF ou CNPJ invalido: erro na api' + `${client}` });
     }
 
     res.status(200).json({ client: client[0] });
