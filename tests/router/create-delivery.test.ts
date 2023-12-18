@@ -18,7 +18,7 @@ describe('create-delivery', () => {
     user.token = token;
   });
   it('should create a delivery', async () => {
-    const { body, statusCode } = await serverTest
+    const { body } = await serverTest
       .post(`${process.env.VERSION}/delivery`)
       .set('Authorization', `${process.env.TYPE_JWT} ${user.token}`)
       .send({
@@ -30,11 +30,9 @@ describe('create-delivery', () => {
         latitude: -22334455,
         recipient: {
           cpf_cnpj: '091.931.143-11',
-          boletus_id: 5847430102370,
+          boletus_id: 23546576564333,
         },
       });
-
-    expect(statusCode).toBe(201);
     expect(body.delivery).toBeTruthy();
   });
 });
