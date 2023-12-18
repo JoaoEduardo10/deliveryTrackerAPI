@@ -40,6 +40,12 @@ class DeliveryValidator {
         'Não foi possivel registra a entrega: Cpf ou CNPJ do cliente é necessario!',
       );
     }
+
+    if (!recipient || !recipient.boletus_id) {
+      throw new Bad_Request(
+        'Não foi possivel registra a entrega: id do boleto é necessario!',
+      );
+    }
   }
 }
 

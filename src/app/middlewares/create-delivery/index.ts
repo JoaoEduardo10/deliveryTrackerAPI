@@ -6,6 +6,7 @@ import { Validate } from '../../helpers/validateCpfCnpj';
 import { formatPhoneNumber } from '../../helpers/formatPhoneNumber';
 import validator from 'validator';
 import { Bad_Request } from '../../errors/api-error';
+import { Delivery } from '../../../model/Delivery';
 
 class CreateDeliveryMiddleware {
   static async middleware(
@@ -20,6 +21,14 @@ class CreateDeliveryMiddleware {
     const cpf_cnpf = new Validate();
 
     cpf_cnpf.cpf_or_cnpj(recipient.cpf_cnpj);
+
+    const allBoletus = await Delivery.find();
+
+    for await (const isBoletus of allBoletus) {
+      if (isBoletus.recipient.boletus_id === recipient.boletus_id) {
+        throw new Bad_Request('Boleto já adicinado');
+      }
+    }
 
     if (recipient.number) {
       const new_number = formatPhoneNumber(recipient.number);

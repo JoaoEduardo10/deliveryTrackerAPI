@@ -5,6 +5,7 @@ export interface CreateDeliveryParams {
   deliveredByEmail: string;
   recipient: {
     cpf_cnpj: string;
+    boletus_id: number;
     email?: string;
     number?: string;
     someoneAtHome?: boolean;

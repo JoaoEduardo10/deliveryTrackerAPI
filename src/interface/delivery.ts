@@ -4,6 +4,7 @@ interface DeliveryDTO {
   deliveredByEmail: string;
   recipient: {
     cpf_cnpj: string;
+    boletus_id: number;
     email?: string;
     number?: string;
     someoneAtHome?: boolean; //alguém em casa

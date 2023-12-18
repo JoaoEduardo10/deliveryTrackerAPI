@@ -16,6 +16,7 @@ describe('create-delivery', () => {
       longitude: -40000390,
       recipient: {
         cpf_cnpj: '091-987-243-12',
+        boletus_id: 23546576564333,
       },
     });
 
@@ -170,6 +171,31 @@ describe('create-delivery', () => {
     }
   });
 
+  it('should not create the delivery by not adding the recepient boletus_id', async () => {
+    const repository = new MongoCreateDelivaryRepository();
+
+    try {
+      const delivery = await repository.create({
+        deliveredByEmail: 'entregador@interativabr.com.br',
+        deliveredByName: 'entregador',
+        imageReference: 'entregador.png',
+        latitude: -10222245,
+        longitude: -40000390,
+        recipient: {
+          cpf_cnpj: '091.922.144-22',
+        },
+      } as CreateDeliveryParams);
+
+      expect(delivery.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        'Não foi possivel registra a entrega: id do boleto é necessario!',
+      );
+    }
+  });
+
   it('should not create the delivery by not adding the recipient', async () => {
     const repository = new MongoCreateDelivaryRepository();
 
@@ -205,6 +231,7 @@ describe('create-delivery', () => {
         longitude: -40000390,
         recipient: {
           cpf_cnpj: '091-987-243-12',
+          boletus_id: 345456776543,
         },
       });
 

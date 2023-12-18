@@ -17,6 +17,11 @@ const Delivery = model(
         type: String,
         required: true,
       },
+      boletus_id: {
+        type: Number,
+        required: true,
+        unique: true,
+      },
       email: {
         type: String,
         required: false,
