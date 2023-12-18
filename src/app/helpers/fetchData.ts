@@ -1,8 +1,7 @@
 /* eslint-disable indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { Internal_Server_Error } from '../errors/api-error';
-import { IXC_API } from '../lib/axios';
 
 interface FetchIxcParams {
   url: string;
@@ -14,7 +13,7 @@ interface FetchIxcParams {
 class Fetch {
   private axiosIxc: AxiosInstance;
   constructor() {
-    this.axiosIxc = IXC_API;
+    this.axiosIxc = axios;
   }
 
   async ixc<T>({ url, method, token, data }: FetchIxcParams): Promise<T[]> {
@@ -30,7 +29,7 @@ class Fetch {
             ixcsoft: 'listar',
           };
 
-    const response = await this.axiosIxc(url, {
+    const response = await this.axiosIxc(`${process.env.IXC_URL}${url}`, {
       method,
       headers,
       data,
