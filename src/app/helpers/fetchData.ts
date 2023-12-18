@@ -39,9 +39,7 @@ class Fetch {
     const ixc_data: { registros?: T[] } = await response.data;
 
     if (method != 'PUT' && !ixc_data.registros) {
-      throw new Internal_Server_Error(
-        'Não foi possivel buscar o cliente' + process.env.IXC_TOKEN,
-      );
+      throw new Internal_Server_Error('Não foi possivel buscar o cliente');
     }
 
     return ixc_data.registros ?? [];

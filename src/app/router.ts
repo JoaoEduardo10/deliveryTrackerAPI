@@ -30,7 +30,7 @@ router.get(
     const client = await ixc.get_client({ cpf_cnpj: cpf_cnpj as string });
 
     if (typeof client == 'string') {
-      return res.status(401).json({ error: 'CPF ou CNPJ invalido: ' + client });
+      return res.status(401).json({ error: 'CPF ou CNPJ invalido' });
     }
 
     res.status(200).json({ client: client[0] });

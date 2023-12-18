@@ -40,7 +40,7 @@ describe('validate-client', () => {
 
     expect(statusCode).toBe(401);
     expect(body).toEqual({
-      error: 'CPF ou CNPJ invalido: caio no test',
+      error: 'CPF ou CNPJ invalido',
     });
   });
 
