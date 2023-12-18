@@ -22,7 +22,7 @@ describe('create-delivery', () => {
     vi.spyOn(
       ImageUploaderRepository.prototype,
       'processAndSaveImage',
-    ).mockReturnValue(Promise.resolve({ imageUrl: 'https:///image.png' }));
+    ).mockReturnValue(Promise.resolve({ imageUrl: 'https://image.png' }));
 
     const { body, statusCode } = await serverTest
       .post(`${process.env.VERSION}/delivery`)
