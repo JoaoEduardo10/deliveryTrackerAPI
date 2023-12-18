@@ -39,7 +39,9 @@ describe('validate-client', () => {
       .set('Authorization', `${process.env.TYPE_JWT} ${user.token}`);
 
     expect(statusCode).toBe(401);
-    expect(body).toEqual({ error: 'CPF ou CNPJ invalido' });
+    expect(body).toEqual({
+      error: 'CPF ou CNPJ invalido: erro na apicaio no test',
+    });
   });
 
   it('should valideted cpf_cnpj', async () => {
