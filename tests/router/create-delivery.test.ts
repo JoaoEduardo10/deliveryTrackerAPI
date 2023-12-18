@@ -1,6 +1,7 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createJwt } from '../../src/app/helpers/jsonwebtoken';
 import { serverTest } from '../setup';
+import { ImageUploaderRepository } from '../../src/app/repositories/upload-image-storege';
 
 describe('create-delivery', () => {
   const user = {
@@ -18,6 +19,11 @@ describe('create-delivery', () => {
     user.token = token;
   });
   it('should create a delivery', async () => {
+    vi.spyOn(
+      ImageUploaderRepository.prototype,
+      'processAndSaveImage',
+    ).mockReturnValue(Promise.resolve({ imageUrl: 'https:///image.png' }));
+
     const { body, statusCode } = await serverTest
       .post(`${process.env.VERSION}/delivery`)
       .set('Authorization', `${process.env.TYPE_JWT} ${user.token}`)
@@ -34,7 +40,7 @@ describe('create-delivery', () => {
         },
       });
 
-    expect(statusCode).toBe(500);
-    expect(body).toEqual({ error: '' });
+    expect(statusCode).toBe(201);
+    expect(body.delivery).toBeTruthy();
   });
 });
