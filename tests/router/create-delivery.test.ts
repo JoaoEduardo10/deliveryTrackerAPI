@@ -30,7 +30,7 @@ describe('create-delivery', () => {
         latitude: -22334455,
         recipient: {
           cpf_cnpj: '091.931.143-11',
-          boletus_id: 1256542343,
+          boletus_id: 5847430102370,
         },
       });
 
