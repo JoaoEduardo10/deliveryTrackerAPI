@@ -5,7 +5,7 @@ import { router } from './router';
 import { globalsErrorMiddleware } from './middlewares/globals-errors';
 import cors from 'cors';
 import swagger from 'swagger-ui-express';
-import { Jsonfiles } from './configure-env-for-json';
+import { Jsonfiles } from './helpers/configure-env-for-json';
 import swaggerDocsJson from './swagger.json';
 
 const app = express();

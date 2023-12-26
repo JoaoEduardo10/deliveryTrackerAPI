@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'dotenv/config';
 import fs from 'fs/promises';
-import { Internal_Server_Error } from './errors/api-error';
+import { Internal_Server_Error } from '../errors/api-error';
 
 class Jsonfiles {
   static async read({ jsonFilePath }: { jsonFilePath: string }) {
