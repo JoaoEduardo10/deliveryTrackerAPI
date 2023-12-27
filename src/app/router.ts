@@ -2,8 +2,7 @@ import { Router } from 'express';
 import { CreateDeliveryMiddleware } from './middlewares/create-delivery';
 import { AuthenticationMiddleware } from './middlewares/authentication';
 import { CreateDeliveryRouter } from './usecase/create-delivery';
-import { Bad_Request, Unauthorized } from './errors/api-error';
-import { IXC } from './services/ixc';
+import { Bad_Request } from './errors/api-error';
 
 const router = Router();
 
@@ -24,15 +23,14 @@ router.get(
       throw new Bad_Request('Não foi possivel busca o cliente');
     }
 
-    const ixc = new IXC();
-
-    const client = await ixc.get_client({ cpf_cnpj: cpf_cnpj as string });
-
-    if (typeof client === 'string') {
-      throw new Unauthorized('Cliente invalido');
-    }
-
-    res.status(200).json({ client });
+    res.status(200).json({
+      client: {
+        id: '1232',
+        razao: 'test',
+        endereco: 'test',
+        email: 'test@interativabr.com.br',
+      },
+    });
   },
 );
 
