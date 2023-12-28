@@ -13,6 +13,12 @@ config();
 app.use(express.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  next();
+});
+
 const version = process.env.VERSION;
 
 app.use(`${version}`, router);
